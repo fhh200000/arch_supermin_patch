@@ -13,16 +13,17 @@ makedepends=('ocaml' 'ocaml-findlib' 'cpio')
 depends=('e2fsprogs' 'pacman' 'pacman-contrib')
 conflicts=('febootstrap<=3.21')
 source=("http://download.libguestfs.org/${pkgname}/5.2-stable/${pkgname}-${pkgver}.tar.gz"
-        "pacman-iter.patch"
-        "pacman-version.patch")
+        "pacman-version.patch"
+        "pacman-iter.patch")
 sha512sums=('782d00f95a37ad75833b659300b085b5c7bfa1c795eae9aa57b3c52cab0332d6e6b8e1bddc5b1c0075cc64b60e22b64387771cd9f457568408889244a4628467'
-            'cec4e3fa3a82393397fc73b3e99fa4bbc17805f0a08917564cf456060349e56699f69a69a68e1523a052d8d27764cc7bcf619c6b83ff90c664c4784afafab337'
-            'SKIP')
+            '7753585ab591e501d24fc02bb9917b61a50b558c84a4fbfc6760b8fde1870a5138e74ee1c7c3559562cb8e202c888c252254883a2a6264f977c830a2051a70ff'
+            'cec4e3fa3a82393397fc73b3e99fa4bbc17805f0a08917564cf456060349e56699f69a69a68e1523a052d8d27764cc7bcf619c6b83ff90c664c4784afafab337')
 validpgpkeys=('F7774FB1AD074A7E8C8767EA91738F73E1B768A0') # Richard W.M. Jones <rjones@redhat.com>
 
 prepare() {
   cd "${pkgname}-${pkgver}"
 
+  patch src/ph_pacman.ml "${srcdir}/pacman-version.patch"
   patch src/ph_pacman.ml "${srcdir}/pacman-iter.patch"
 }
 
